@@ -22,6 +22,7 @@ The public v0.7.23 release currently publishes these files:
 - `pharos-0.7.23-darwin.pkg`
 - `pharos-0.7.23-windows-x86_64-msvc.tar.gz`
 - `pharos-0.7.23-windows-x86_64-msvc.zip`
+- `dev_docs-app-0.7.23.tar.gz`
 - `ucal-app-0.7.23.tar.gz`
 - `SHA256SUMS-0.7.23.txt`
 
@@ -34,9 +35,11 @@ The released Pharos packages include these version-coupled apps under `/srv/phar
 - `dynamic_app` — the compact dynamic reference app
 - `static_app` — the minimal static-pages reference
 
+`dev_docs` is published separately as `dev_docs-app-0.7.23.tar.gz`.
+
 `ucal` is published separately as `ucal-app-0.7.23.tar.gz`.
 
-`dev_docs`, `llight`, and the live UCAL deployment remain online-deployed apps rather than version-coupled packaged release apps.
+`llight` and the live UCAL deployment remain online-deployed apps rather than version-coupled packaged release apps.
 
 ## Current Pharos feature set
 
