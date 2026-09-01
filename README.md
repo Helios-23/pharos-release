@@ -1,41 +1,41 @@
 # Pharos Release Downloads
 
-Public release downloads for Pharos v0.7.23.
+Public release downloads for Pharos v0.7.24.
 
 This repository intentionally keeps its source contents minimal so the
 GitHub-generated source archives contain only this public release page.
 
 ## Downloads
 
-- [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.7.23/pharos_0.7.23_amd64.deb)
-- [macOS package](https://github.com/Helios-23/pharos-release/releases/download/v0.7.23/pharos-0.7.23-darwin.pkg)
-- [Windows `.tar.gz`](https://github.com/Helios-23/pharos-release/releases/download/v0.7.23/pharos-0.7.23-windows-x86_64-msvc.tar.gz)
-- [Windows `.zip`](https://github.com/Helios-23/pharos-release/releases/download/v0.7.23/pharos-0.7.23-windows-x86_64-msvc.zip)
-- [Developer docs app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.7.23/dev_docs-app-0.7.23.tar.gz)
-- [UCAL app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.7.23/ucal-app-0.7.23.tar.gz)
-- [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.7.23/SHA256SUMS-0.7.23.txt)
+- [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/pharos_0.7.24+git54ef3046_amd64.deb)
+- [macOS package](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/pharos-0.7.24+git54ef3046-darwin.pkg)
+- [Windows `.zip`](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/pharos-0.7.24+git54ef3046-windows-x86_64-msvc.zip)
+- [Developer docs app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/dev_docs-app-0.7.24.tar.gz)
+- [UCAL app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/ucal-app-0.7.24.tar.gz)
+- [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/SHA256SUMS-0.7.24.txt)
 
-## Release Notes: v0.7.23
+## Release Notes: v0.7.24
 
-Pharos v0.7.23 ships the native Pharos runtime, the `pharos` CLI, and a set of packaged example apps that show the current framework path from a minimal SPA to a larger dynamic application.
+Pharos v0.7.24 tightens the production release path, deepens the shipped demo documentation, widens runtime contract surfaces, and fixes several live application and deployment issues discovered during release hardening.
 
 This release is centered on:
 
-- a shared native runtime for hosted Pharos apps
-- a CLI for build, verify, serve, migrate, and packaging flows
-- packaged example apps that can be installed directly and run without cloning the repository
+- a cleaner production release path with explicit local validation, live deploy ordering, and public artifact scoping
+- deeper app-centered tutorials for `todo_list`, `commerce_spa`, `ucal`, and `dev_docs`
+- runtime and contract widening for hooks, middleware, and declarative mutations
+- SQLite build-boundary and version-source cleanup
+- fixes for login rendering, docs routing, checkout behavior, and packaged migration rollout ordering
 
 ## Current release artifacts
 
-The public v0.7.23 release currently publishes these files:
+The public v0.7.24 release currently publishes these files:
 
-- `pharos_0.7.23_amd64.deb`
-- `pharos-0.7.23-darwin.pkg`
-- `pharos-0.7.23-windows-x86_64-msvc.tar.gz`
-- `pharos-0.7.23-windows-x86_64-msvc.zip`
-- `dev_docs-app-0.7.23.tar.gz`
-- `ucal-app-0.7.23.tar.gz`
-- `SHA256SUMS-0.7.23.txt`
+- `pharos_0.7.24+git54ef3046_amd64.deb`
+- `pharos-0.7.24+git54ef3046-darwin.pkg`
+- `pharos-0.7.24+git54ef3046-windows-x86_64-msvc.zip`
+- `dev_docs-app-0.7.24.tar.gz`
+- `ucal-app-0.7.24.tar.gz`
+- `SHA256SUMS-0.7.24.txt`
 
 ## Included packaged apps
 
@@ -46,15 +46,15 @@ The released Pharos packages include these version-coupled apps under `/srv/phar
 - `dynamic_app` — the compact dynamic reference app
 - `static_app` — the minimal static-pages reference
 
-`dev_docs` is published separately as `dev_docs-app-0.7.23.tar.gz`.
+`dev_docs` is published separately as `dev_docs-app-0.7.24.tar.gz`.
 
-`ucal` is published separately as `ucal-app-0.7.23.tar.gz`.
+`ucal` is published separately as `ucal-app-0.7.24.tar.gz`.
 
 `llight` and the live UCAL deployment remain online-deployed apps rather than version-coupled packaged release apps.
 
 ## Current Pharos feature set
 
-Pharos v0.7.23 is a native web-app framework built around a simple split: apps declare intent, and the runtime owns execution. The framework is designed to let a web developer build the application itself without first assembling a stack of API handlers, client fetch code, background runtime glue, and custom deployment plumbing.
+Pharos v0.7.24 is a native web-app framework built around a simple split: apps declare intent, and the runtime owns execution. The framework is designed to let a web developer build the application itself without first assembling a stack of API handlers, client fetch code, background runtime glue, and custom deployment plumbing.
 
 ### Declarative app model
 
@@ -190,7 +190,7 @@ For many ordinary application features, Pharos is intended to replace or reduce 
 
 ## Future release targets
 
-These targets are tracked in the workspace but are not part of the public v0.7.23 release artifact set:
+These targets are tracked in the workspace but are not part of the public v0.7.24 release artifact set:
 
 - Linux x86_64 musl packages
 - Linux ARM64 GNU packages
