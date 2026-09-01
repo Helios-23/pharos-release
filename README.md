@@ -7,9 +7,9 @@ GitHub-generated source archives contain only this public release page.
 
 ## Downloads
 
-- [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/pharos_0.7.24+git54ef3046_amd64.deb)
-- [macOS package](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/pharos-0.7.24+git54ef3046-darwin.pkg)
-- [Windows `.zip`](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/pharos-0.7.24+git54ef3046-windows-x86_64-msvc.zip)
+- [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/pharos_0.7.24_amd64.deb)
+- [macOS package](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/pharos-0.7.24-darwin.pkg)
+- [Windows `.zip`](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/pharos-0.7.24-windows-x86_64-msvc.zip)
 - [Developer docs app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/dev_docs-app-0.7.24.tar.gz)
 - [UCAL app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/ucal-app-0.7.24.tar.gz)
 - [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/SHA256SUMS-0.7.24.txt)
@@ -30,9 +30,9 @@ This release is centered on:
 
 The public v0.7.24 release currently publishes these files:
 
-- `pharos_0.7.24+git54ef3046_amd64.deb`
-- `pharos-0.7.24+git54ef3046-darwin.pkg`
-- `pharos-0.7.24+git54ef3046-windows-x86_64-msvc.zip`
+- `pharos_0.7.24_amd64.deb`
+- `pharos-0.7.24-darwin.pkg`
+- `pharos-0.7.24-windows-x86_64-msvc.zip`
 - `dev_docs-app-0.7.24.tar.gz`
 - `ucal-app-0.7.24.tar.gz`
 - `SHA256SUMS-0.7.24.txt`
