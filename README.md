@@ -1,41 +1,47 @@
 # Pharos Release Downloads
 
-Public release downloads for Pharos v0.7.24.
+Public release downloads for Pharos v0.8.0.
 
 This repository intentionally keeps its source contents minimal so the
 GitHub-generated source archives contain only this public release page.
 
 ## Downloads
 
-- [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/pharos_0.7.24_amd64.deb)
-- [macOS package](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/pharos-0.7.24-darwin.pkg)
-- [Windows `.zip`](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/pharos-0.7.24-windows-x86_64-msvc.zip)
-- [Developer docs app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/dev_docs-app-0.7.24.tar.gz)
-- [UCAL app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/ucal-app-0.7.24.tar.gz)
-- [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.7.24/SHA256SUMS-0.7.24.txt)
+- [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.0/pharos_0.8.0_amd64.deb)
+- [macOS package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.0/pharos-0.8.0-darwin.pkg)
+- [Windows `.zip`](https://github.com/Helios-23/pharos-release/releases/download/v0.8.0/pharos-0.8.0-windows-x86_64-msvc.zip)
+- [Developer docs app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.0/dev_docs-app-0.8.0.tar.gz)
+- [UCAL app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.0/ucal-app-0.8.0.tar.gz)
+- [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.0/SHA256SUMS-0.8.0.txt)
 
-## Release Notes: v0.7.24
+## Release Notes: v0.8.0
 
-Pharos v0.7.24 tightens the production release path, deepens the shipped demo documentation, widens runtime contract surfaces, and fixes several live application and deployment issues discovered during release hardening.
+Pharos v0.8.0 expands the framework’s production data stack and cache model while continuing the docs and example-app cleanup needed for release deployment.
 
-This release is centered on:
+### New Features
 
-- a cleaner production release path with explicit local validation, live deploy ordering, and public artifact scoping
-- deeper app-centered tutorials for `todo_list`, `commerce_spa`, `ucal`, and `dev_docs`
-- runtime and contract widening for hooks, middleware, and declarative mutations
-- SQLite build-boundary and version-source cleanup
-- fixes for login rendering, docs routing, checkout behavior, and packaged migration rollout ordering
+- MySQL is now a primary Pharos database backend
+- MongoDB is now a primary Pharos database backend for the shared runtime lane
+- Redis is now available as an optional runtime cache layer
+
+### Included changes
+
+- `dev_docs` moved further toward manifest-owned branding and documentation selection
+- `dev_docs` docs inclusion was cleaned up so the nav, generated outputs, and shipped pages stay aligned without source hardcoding
+- Beacon Beats storefront presentation, copy, and tutorial surfaces were refined to better match the shipped app and screenshots
+- quickstart documentation for the audio-store tutorial now uses refreshed Beacon Beats screenshots that match the current app presentation
+- release-preparation guidance was tightened around version ownership, public asset naming, and the current public release subset
 
 ## Current release artifacts
 
-The public v0.7.24 release currently publishes these files:
+The public v0.8.0 release currently publishes these files:
 
-- `pharos_0.7.24_amd64.deb`
-- `pharos-0.7.24-darwin.pkg`
-- `pharos-0.7.24-windows-x86_64-msvc.zip`
-- `dev_docs-app-0.7.24.tar.gz`
-- `ucal-app-0.7.24.tar.gz`
-- `SHA256SUMS-0.7.24.txt`
+- `pharos_0.8.0_amd64.deb`
+- `pharos-0.8.0-darwin.pkg`
+- `pharos-0.8.0-windows-x86_64-msvc.zip`
+- `dev_docs-app-0.8.0.tar.gz`
+- `ucal-app-0.8.0.tar.gz`
+- `SHA256SUMS-0.8.0.txt`
 
 ## Included packaged apps
 
@@ -46,15 +52,15 @@ The released Pharos packages include these version-coupled apps under `/srv/phar
 - `dynamic_app` — the compact dynamic reference app
 - `static_app` — the minimal static-pages reference
 
-`dev_docs` is published separately as `dev_docs-app-0.7.24.tar.gz`.
+`dev_docs` is published separately as `dev_docs-app-0.8.0.tar.gz`.
 
-`ucal` is published separately as `ucal-app-0.7.24.tar.gz`.
+`ucal` is published separately as `ucal-app-0.8.0.tar.gz`.
 
 `llight` and the live UCAL deployment remain online-deployed apps rather than version-coupled packaged release apps.
 
 ## Current Pharos feature set
 
-Pharos v0.7.24 is a native web-app framework built around a simple split: apps declare intent, and the runtime owns execution. The framework is designed to let a web developer build the application itself without first assembling a stack of API handlers, client fetch code, background runtime glue, and custom deployment plumbing.
+Pharos v0.8.0 is a native web-app framework built around a simple split: apps declare intent, and the runtime owns execution. The framework is designed to let a web developer build the application itself without first assembling a stack of API handlers, client fetch code, background runtime glue, and custom deployment plumbing.
 
 ### Declarative app model
 
@@ -117,8 +123,10 @@ Dynamic apps are database-driven by default. The current release supports:
 
 - SQLite
 - PostgreSQL
+- MySQL
+- MongoDB
 
-The framework is built for relational application state rather than scratch-file state as the primary source of truth.
+Redis is available as an optional runtime cache layer. It is not the primary database of record.
 
 ### Build, verify, and package workflow
 
@@ -190,7 +198,7 @@ For many ordinary application features, Pharos is intended to replace or reduce 
 
 ## Future release targets
 
-These targets are tracked in the workspace but are not part of the public v0.7.24 release artifact set:
+These targets are tracked in the workspace but are not part of the public v0.8.0 release artifact set:
 
 - Linux x86_64 musl packages
 - Linux ARM64 GNU packages
