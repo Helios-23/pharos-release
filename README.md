@@ -20,8 +20,8 @@ Pharos v0.8.0 expands the framework’s production data stack and cache model wh
 
 ### New Features
 
-- MySQL is now a primary Pharos database backend
-- MongoDB is now a primary Pharos database backend for the shared runtime lane
+- MySQL is now a primary Pharos database backend, with runtime configuration, queries, mutations, migrations, and deployment proof coverage
+- MongoDB is now a primary Pharos database backend, with runtime configuration, queries, mutations, migrations, and deployment proof coverage
 - Redis is now available as an optional runtime cache layer
 
 ### Included changes
