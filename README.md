@@ -1,47 +1,42 @@
 # Pharos Release Downloads
 
-Public release downloads for Pharos v0.8.0.
+Public release downloads for Pharos v0.8.1.
 
 This repository intentionally keeps its source contents minimal so the
 GitHub-generated source archives contain only this public release page.
 
 ## Downloads
 
-- [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.0/pharos_0.8.0_amd64.deb)
-- [macOS package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.0/pharos-0.8.0-darwin.pkg)
-- [Windows `.zip`](https://github.com/Helios-23/pharos-release/releases/download/v0.8.0/pharos-0.8.0-windows-x86_64-msvc.zip)
-- [Developer docs app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.0/dev_docs-app-0.8.0.tar.gz)
-- [UCAL app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.0/ucal-app-0.8.0.tar.gz)
-- [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.0/SHA256SUMS-0.8.0.txt)
+- [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/pharos_0.8.1_amd64.deb)
+- [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/SHA256SUMS-0.8.1.txt)
 
-## Release Notes: v0.8.0
+## Release Notes: v0.8.1
 
-Pharos v0.8.0 expands the framework’s production data stack and cache model while continuing the docs and example-app cleanup needed for release deployment.
+Pharos v0.8.1 delivers production-ready payment-provider management and checkout flows while preserving demo mode as the default app behavior.
 
 ### New Features
 
-- MySQL is now a primary Pharos database backend, with runtime configuration, queries, mutations, migrations, and deployment proof coverage
-- MongoDB is now a primary Pharos database backend, with runtime configuration, queries, mutations, migrations, and deployment proof coverage
-- Redis is now available as an optional runtime cache layer
+- Generic payment-provider management is available as a reusable runtime capability, with provider-neutral account status, encrypted credential storage, checkout-mode control, provider audit events, callback nonce validation, and app-declared route/action wiring.
+- Stripe is the first concrete payment provider, supporting credential validation, Stripe-hosted Checkout Sessions, success and cancel return handling, signed webhook confirmation, failure/expiration/refund/dispute event handling, and fulfillment only after verified provider confirmation.
+- Beacon Beats can run either demo checkout or live Stripe-backed checkout per store, with owner-managed credentials, payment-flow debugging cards, Stripe-hosted customer purchase flow, and download unlocks tied to confirmed payment events.
+- UCAL can run either demo appointment booking or Stripe-backed prepaid appointment booking per business, with owner-managed credentials, customer payment return handling, webhook-confirmed appointment payment status, and calendar visibility for recorded appointments.
 
 ### Included changes
 
-- `dev_docs` moved further toward manifest-owned branding and documentation selection
-- `dev_docs` docs inclusion was cleaned up so the nav, generated outputs, and shipped pages stay aligned without source hardcoding
-- Beacon Beats storefront presentation, copy, and tutorial surfaces were refined to better match the shipped app and screenshots
-- quickstart documentation for the audio-store tutorial now uses refreshed Beacon Beats screenshots that match the current app presentation
-- release-preparation guidance was tightened around version ownership, public asset naming, and the current public release subset
+- Beacon Beats owner, cart, checkout, library, order-detail, and payment-provider screens were refined so the payment flow is usable end to end while preserving demo mode as the default fallback.
+- UCAL business settings now host payment-provider and Google Calendar controls in the edit-business flow, keeping business configuration in one app-owned declarative surface.
+- UCAL booking and calendar screens were refined for paid and unpaid appointment creation, technician assignment, appointment detail dialogs, selected-day rendering, and dynamic availability filtering.
+- Payment-provider copy and provider wiring moved into app-owned `data/payment_provider.yml` files so future providers can be added without spreading provider metadata through the main app manifests.
+- Local and live smoke expectations were updated to match reusable payment-provider copy and current Beacon Beats and UCAL flows.
 
 ## Current release artifacts
 
-The public v0.8.0 release currently publishes these files:
+The public v0.8.1 release currently publishes these Linux-first files:
 
-- `pharos_0.8.0_amd64.deb`
-- `pharos-0.8.0-darwin.pkg`
-- `pharos-0.8.0-windows-x86_64-msvc.zip`
-- `dev_docs-app-0.8.0.tar.gz`
-- `ucal-app-0.8.0.tar.gz`
-- `SHA256SUMS-0.8.0.txt`
+- `pharos_0.8.1_amd64.deb`
+- `SHA256SUMS-0.8.1.txt`
+
+macOS, Windows, and separately published app archives are built and published after the Linux package is live-verified.
 
 ## Included packaged apps
 
@@ -60,7 +55,7 @@ The released Pharos packages include these version-coupled apps under `/srv/phar
 
 ## Current Pharos feature set
 
-Pharos v0.8.0 is a native web-app framework built around a simple split: apps declare intent, and the runtime owns execution. The framework is designed to let a web developer build the application itself without first assembling a stack of API handlers, client fetch code, background runtime glue, and custom deployment plumbing.
+Pharos v0.8.1 is a native web-app framework built around a simple split: apps declare intent, and the runtime owns execution. The framework is designed to let a web developer build the application itself without first assembling a stack of API handlers, client fetch code, background runtime glue, and custom deployment plumbing.
 
 ### Declarative app model
 
