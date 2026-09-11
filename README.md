@@ -8,6 +8,8 @@ GitHub-generated source archives contain only this public release page.
 ## Downloads
 
 - [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/pharos_0.8.1_amd64.deb)
+- [macOS package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/pharos-0.8.1-darwin.pkg)
+- [Windows `.zip`](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/pharos-0.8.1-windows-x86_64-msvc.zip)
 - [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/SHA256SUMS-0.8.1.txt)
 
 ## Release Notes: v0.8.1
@@ -31,12 +33,12 @@ Pharos v0.8.1 delivers production-ready payment-provider management and checkout
 
 ## Current release artifacts
 
-The public v0.8.1 release currently publishes these Linux-first files:
+The public v0.8.1 release currently publishes these runtime package files:
 
 - `pharos_0.8.1_amd64.deb`
+- `pharos-0.8.1-darwin.pkg`
+- `pharos-0.8.1-windows-x86_64-msvc.zip`
 - `SHA256SUMS-0.8.1.txt`
-
-macOS, Windows, and separately published app archives are built and published after the Linux package is live-verified.
 
 ## Included packaged apps
 
