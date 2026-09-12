@@ -8,7 +8,8 @@ GitHub-generated source archives contain only this public release page.
 ## Downloads
 
 - [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/pharos_0.8.1_amd64.deb)
-- [macOS package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/pharos-0.8.1-darwin.pkg)
+- [macOS x86_64 package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/pharos-0.8.1-darwin-x86_64.pkg)
+- [macOS arm64 package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/pharos-0.8.1-darwin-arm64.pkg)
 - [Windows `.zip`](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/pharos-0.8.1-windows-x86_64-msvc.zip)
 - [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/SHA256SUMS-0.8.1.txt)
 
@@ -30,13 +31,15 @@ Pharos v0.8.1 delivers production-ready payment-provider management and checkout
 - UCAL booking and calendar screens were refined for paid and unpaid appointment creation, technician assignment, appointment detail dialogs, selected-day rendering, and dynamic availability filtering.
 - Payment-provider copy and provider wiring moved into app-owned `data/payment_provider.yml` files so future providers can be added without spreading provider metadata through the main app manifests.
 - Local and live smoke expectations were updated to match reusable payment-provider copy and current Beacon Beats and UCAL flows.
+- macOS release packaging is split into separate x86_64 and arm64 installer artifacts so each architecture is built, verified, checksummed, and published independently.
 
 ## Current release artifacts
 
 The public v0.8.1 release currently publishes these runtime package files:
 
 - `pharos_0.8.1_amd64.deb`
-- `pharos-0.8.1-darwin.pkg`
+- `pharos-0.8.1-darwin-x86_64.pkg`
+- `pharos-0.8.1-darwin-arm64.pkg`
 - `pharos-0.8.1-windows-x86_64-msvc.zip`
 - `SHA256SUMS-0.8.1.txt`
 
@@ -195,7 +198,7 @@ For many ordinary application features, Pharos is intended to replace or reduce 
 
 ## Future release targets
 
-These targets are tracked in the workspace but are not part of the public v0.8.0 release artifact set:
+These targets are tracked in the workspace but are not part of the public v0.8.1 release artifact set:
 
 - Linux x86_64 musl packages
 - Linux ARM64 GNU packages
