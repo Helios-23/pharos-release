@@ -13,7 +13,7 @@ GitHub-generated source archives contain only this public release page.
 - [Windows `.zip`](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/pharos-0.8.1-windows-x86_64-msvc.zip)
 - [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/SHA256SUMS-0.8.1.txt)
 
-## Release Notes: v0.8.1
+## Release Notes: v0.8.1 — 2026-09-12
 
 Pharos v0.8.1 delivers production-ready payment-provider management and checkout flows while preserving demo mode as the default app behavior.
 
@@ -33,7 +33,7 @@ Pharos v0.8.1 delivers production-ready payment-provider management and checkout
 - Local and live smoke expectations were updated to match reusable payment-provider copy and current Beacon Beats and UCAL flows.
 - macOS release packaging is split into separate x86_64 and arm64 installer artifacts so each architecture is built, verified, checksummed, and published independently.
 
-## Current release artifacts
+## Published artifacts
 
 The public v0.8.1 release currently publishes these runtime package files:
 
@@ -43,7 +43,7 @@ The public v0.8.1 release currently publishes these runtime package files:
 - `pharos-0.8.1-windows-x86_64-msvc.zip`
 - `SHA256SUMS-0.8.1.txt`
 
-## Included packaged apps
+## Packaged apps in the base release
 
 The released Pharos packages include these version-coupled apps under `/srv/pharos/apps`:
 
@@ -51,10 +51,6 @@ The released Pharos packages include these version-coupled apps under `/srv/phar
 - `commerce_spa` — Beacon Beats, an audio sample preview and purchase demo
 - `dynamic_app` — the compact dynamic reference app
 - `static_app` — the minimal static-pages reference
-
-`dev_docs` is published separately as `dev_docs-app-0.8.0.tar.gz`.
-
-`ucal` is published separately as `ucal-app-0.8.0.tar.gz`.
 
 `llight` and the live UCAL deployment remain online-deployed apps rather than version-coupled packaged release apps.
 
