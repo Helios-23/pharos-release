@@ -1,203 +1,109 @@
 # Pharos Release Downloads
 
-Public release downloads for Pharos v0.8.1.
+Public release downloads for Pharos v0.8.2.
 
-This repository intentionally keeps its source contents minimal so the
-GitHub-generated source archives contain only this public release page.
+This repository intentionally keeps its source contents minimal so the GitHub-generated source archives contain only this public release page.
 
 ## Downloads
 
-- [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/pharos_0.8.1_amd64.deb)
-- [macOS x86_64 package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/pharos-0.8.1-darwin-x86_64.pkg)
-- [macOS arm64 package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/pharos-0.8.1-darwin-arm64.pkg)
-- [Windows `.zip`](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/pharos-0.8.1-windows-x86_64-msvc.zip)
-- [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.1/SHA256SUMS-0.8.1.txt)
+- [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos_0.8.2_amd64.deb)
+- [Linux x86_64 GNU tarball](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-0.8.2-linux-x86_64-gnu.tar.gz)
+- [macOS x86_64 package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-0.8.2-darwin-x86_64.pkg)
+- [macOS arm64 package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-0.8.2-darwin-arm64.pkg)
+- [Windows `.zip`](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-0.8.2-windows-x86_64-msvc.zip)
+- [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/SHA256SUMS-0.8.2.txt)
 
-## Release Notes: v0.8.1 — 2026-09-12
+## Release Notes: v0.8.2 — 2026-09-27
 
-Pharos v0.8.1 delivers production-ready payment-provider management and checkout flows while preserving demo mode as the default app behavior.
 
 ### New Features
 
-- Generic payment-provider management is available as a reusable runtime capability, with provider-neutral account status, encrypted credential storage, checkout-mode control, provider audit events, callback nonce validation, and app-declared route/action wiring.
-- Stripe is the first concrete payment provider, supporting credential validation, Stripe-hosted Checkout Sessions, success and cancel return handling, signed webhook confirmation, failure/expiration/refund/dispute event handling, and fulfillment only after verified provider confirmation.
-- Beacon Beats can run either demo checkout or live Stripe-backed checkout per store, with owner-managed credentials, payment-flow debugging cards, Stripe-hosted customer purchase flow, and download unlocks tied to confirmed payment events.
-- UCAL can run either demo appointment booking or Stripe-backed prepaid appointment booking per business, with owner-managed credentials, customer payment return handling, webhook-confirmed appointment payment status, and calendar visibility for recorded appointments.
+- Architect is a model-driven app builder with a connected in-browser editor. It turns a product brief into generated Pharos source, opens the app for review, and keeps source export and validation tied to the generated project.
+  - Create an app from a brief and optional context files.
+  - Review generated source and open a validated running preview after the app has materialized.
+  - Edit managed page elements in the browser with right-click editing, group selection, parent traversal, and compact style controls.
+  - Reopen generated apps and imported source apps for later edits.
+  - Inspect source, exports, data-model panels, and page-layout panels from the editor.
+  - Generate dashboard and KPI app layouts with compact field rows, dynamic dropdown values, and date/time controls that fit the form.
+  - Download full source archives that exclude runtime databases, runtime state, vault files, uploads, temp files, secrets, and `dist`.
+  - Read app metadata from `pharos.app.yml` and preserve projects when the same output app id is built again.
+  - Configure bounded LLM vendor settings for cloud or local providers while keeping source writes, migrations, validation, and exports under the built-in builder.
+- Platform helper binaries move heavy optional work out of the main runtime. Media extraction, barcode/QR decode and encode work, docs generation, and ops orchestration use separate helper paths.
+- QR and barcode support includes generation as well as reading. Apps can use the helper path for tickets, reservations, fast links, and scanned-code flows without loading that work during ordinary server startup.
 
 ### Included changes
 
-- Beacon Beats owner, cart, checkout, library, order-detail, and payment-provider screens were refined so the payment flow is usable end to end while preserving demo mode as the default fallback.
-- UCAL business settings now host payment-provider and Google Calendar controls in the edit-business flow, keeping business configuration in one app-owned declarative surface.
-- UCAL booking and calendar screens were refined for paid and unpaid appointment creation, technician assignment, appointment detail dialogs, selected-day rendering, and dynamic availability filtering.
-- Payment-provider copy and provider wiring moved into app-owned `data/payment_provider.yml` files so future providers can be added without spreading provider metadata through the main app manifests.
-- Local and live smoke expectations were updated to match reusable payment-provider copy and current Beacon Beats and UCAL flows.
-- macOS release packaging is split into separate x86_64 and arm64 installer artifacts so each architecture is built, verified, checksummed, and published independently.
+- Release packaging keeps server and app versions separate. A runtime package upgrade does not require separately deployed app bundles to move to the same version.
+- Debian, macOS, Windows, and Linux tarball packages include the split helper binaries alongside the main `pharos` runtime.
+- Linux releases include both a Debian package and a GNU tarball built from the same release binaries.
 
-## Published artifacts
+### Performance and runtime work
 
-The public v0.8.1 release currently publishes these runtime package files:
+- SQL-backed apps no longer use JSON runtime state as request-time authority. Sessions, declared feature actions, generated API mutations, jobs, webhooks, and app records use the relational backend when relational runtime authority is configured.
+- JSON runtime state stays in the file-backed/static lane or in explicit import/export and backup/restore flows. A relational app may still declare a `runtime.state_path` for export compatibility, but normal requests skip JSON-state locks and mutation helpers.
+- SQLite migration startup checks use a cache keyed by the migration ledger and migration contract checksums, avoiding false invalidation from normal SQLite DB/WAL/SHM touch behavior.
+- SQLite migration drift verification batches migration ledger, journal, and required-table reads through one connection. This removed the repeated database open/query loops slowing down apps and app loading. Server startup speed is significantly faster after migration-cache work.
+- `/health` and `/ready` report different states. `/health` can report that the process is alive, while `/ready` waits for the loaded app set so quarantined apps do not count as full app availability.
 
-- `pharos_0.8.1_amd64.deb`
-- `pharos-0.8.1-darwin-x86_64.pkg`
-- `pharos-0.8.1-darwin-arm64.pkg`
-- `pharos-0.8.1-windows-x86_64-msvc.zip`
-- `SHA256SUMS-0.8.1.txt`
+### Fixes and refinements
 
-## Packaged apps in the base release
+- Fixed UCAL startup behavior by removing the route-demanded runtime-state projection path from relational startup and keeping SQL as the active authority.
+- Fixed migration drift in `commerce_spa`, `dynamic_app`, and `ucal`.
+- Fixed release package assembly so helper binaries do not get treated as app roots and packaging strip steps do not overwrite the selected runtime binary.
+- Fixed docs-builder coupling so `pharos-docs-builder` does not pull SQLite/Turso into its helper graph.
+- Fixed media-helper coupling so media entrypoints live outside the general runtime media module and can run as separate work, not server startup work.
 
-The released Pharos packages include these version-coupled apps under `/srv/pharos/apps`:
+### Deployment notes
 
-- `todo_list` — a minimal database-backed SPA for adding and removing tasks
-- `commerce_spa` — Beacon Beats, an audio sample preview and purchase demo
-- `dynamic_app` — the compact dynamic reference app
-- `static_app` — the minimal static-pages reference
+- External LLM vendors are optional. The built-in builder, local validation, source export checks, and runtime contracts remain authoritative for generated apps.
+- SQL-backed apps should keep sessions and app records in SQL. Redis remains an optional cache layer in this release.
+- Runtime data must live outside app install footprints. Replacing app bundles under `dist/apps` or a deployed app directory must not delete databases, generated source, vaults, uploads, logs, or state directories.
+- Server and app versions are separate. The Debian package can update the runtime and package-owned built-in apps while separately deployed apps keep their own version until they are intentionally redeployed.
 
-`llight` and the live UCAL deployment remain online-deployed apps rather than version-coupled packaged release apps.
+### Published artifacts
+
+- `pharos_0.8.2_amd64.deb`
+- `pharos-0.8.2-linux-x86_64-gnu.tar.gz`
+- `pharos-0.8.2-darwin-x86_64.pkg`
+- `pharos-0.8.2-darwin-arm64.pkg`
+- `pharos-0.8.2-windows-x86_64-msvc.zip`
+- `SHA256SUMS-0.8.2.txt`
+
+### Packaged apps in the base release
+
+- `todo_list`
+- `commerce_spa`
+- `dynamic_app`
+- `static_app`
+
+### Apps validated with this release
+
+- `architect`
+- `todo_list`
+- `static_app`
+- `dynamic_app`
+- `commerce_spa`
+- `ucal`
+- `dev_docs`
+- `menu_spa`
+- `llight`
 
 ## Current Pharos feature set
 
-Pharos v0.8.1 is a native web-app framework built around a simple split: apps declare intent, and the runtime owns execution. The framework is designed to let a web developer build the application itself without first assembling a stack of API handlers, client fetch code, background runtime glue, and custom deployment plumbing.
+Pharos v0.8.2 is a native web-app framework built around declared app source, a shared Rust runtime, and app-owned templates and contracts.
 
-### Declarative app model
+### App authoring
 
-Pharos apps are authored as normal app directories with app-owned files such as:
+Pharos apps use normal app directories with `pharos.app.yml`, declarative route/action/policy/data contracts, templates, fragments, static assets, and app-local configuration. The build step compiles those sources into runtime-ready app bundles.
 
-- `pharos.app.yml` for the app manifest
-- declarative route, surface, workflow, action, and UI contracts
-- templates and fragments for rendered HTML
-- fixtures and seed data
-- static assets and media files
-- app-local `app.conf` overrides
+### Architect
 
-The authored source of truth is YAML and templates. The build pipeline compiles that source into runtime-ready JSON artifacts consumed by the native runtime.
+Architect adds a browser-based app builder and editor. A user can start from a brief, attach context files, review generated source, open a validated preview, edit managed page elements, and export a clean source archive.
 
-### App hosting profiles
+### Runtime and data
 
-The active hosting profiles in the current release are:
+The shared runtime owns routing, action execution, query execution, template rendering, fragment updates, sessions, readiness checks, and multi-app hosting. SQL-backed apps use relational state as request-time authority. JSON runtime state stays in the static/file-backed lane and in explicit import/export or backup/restore flows.
 
-- `static-pages`
-- `dynamic-app`
+### Packages
 
-`static-pages` is for fully materialized static documentation or content sites.
-
-`dynamic-app` is for database-backed applications served by the shared Pharos runtime.
-
-### Native shared runtime
-
-Pharos ships a native Rust runtime that owns:
-
-- request routing
-- action execution
-- query execution
-- template rendering
-- fragment rendering
-- response shaping
-- runtime probes
-- shared listener and app loading behavior
-
-This means a Pharos app does not need to ship its own handwritten application server just to handle ordinary web interactions.
-
-### Server-authoritative UI flow
-
-Pharos is built around ordinary browser interactions where forms and links remain primary. The framework handles the server-side work that developers normally have to spread across multiple layers.
-
-In practice, this means Pharos can replace large amounts of routine glue such as:
-
-- handwritten JSON API routes for simple app mutations
-- custom browser fetch flows for standard forms
-- client-side state stores used only to mirror server truth
-- manual re-query and revalidation code after every mutation
-- repeated loading, redirect, and fragment refresh wiring
-
-### Declarative UI surfaces
-
-Pharos supports app-authored UI through templates, fragments, forms, declared surfaces, and static assets. The framework is suited to server-rendered pages, SPA-style dynamic screens, fragment updates, generated CRUD/admin screens, and mixed static/dynamic shells.
-
-### Data model and relational backends
-
-Dynamic apps are database-driven by default. The current release supports:
-
-- SQLite
-- PostgreSQL
-- MySQL
-- MongoDB
-
-Redis is available as an optional runtime cache layer. It is not the primary database of record.
-
-### Build, verify, and package workflow
-
-The `pharos` CLI is the main framework entrypoint. The current release includes CLI flows for:
-
-- building apps
-- verifying apps
-- serving apps
-- serving the shared runtime
-- applying app migrations
-- packaging release artifacts
-
-### Multi-app hosting
-
-One Pharos runtime can host multiple apps under separate mount points. Each app keeps its own declarative sources and app-local configuration while sharing a common runtime process and deployment shape.
-
-### Configuration model
-
-Pharos uses a two-level runtime configuration model:
-
-- shared runtime configuration in `/etc/pharos/pharos.conf`
-- app-local overrides in each app's `app.conf`
-
-### Authentication, sessions, and protected app flows
-
-Pharos already supports authenticated application flows as shown by the published example apps. The framework-owned runtime handles common application-layer concerns around session-backed user flows, protected routes and actions, and login-dependent application behavior.
-
-### Operational runtime features
-
-The current release includes built-in operational surfaces for:
-
-- `/health`
-- `/live`
-- `/ready`
-- version reporting
-- shared runtime logging
-- app-local log overrides
-- runtime state paths
-
-### Deployment shape
-
-The packaged Linux deployment layout currently assumes:
-
-- Pharos binary at `/usr/bin/pharos`
-- configuration under `/etc/pharos`
-- app bundles under `/srv/pharos/apps`
-- databases under `/var/lib/pharos`
-- runtime state under `/var/state/pharos`
-- runtime logs under `/var/log/pharos`
-
-### Example apps included in the current framework story
-
-The current Pharos app path is illustrated by three main dynamic examples:
-
-- `todo_list` for a minimal database-backed SPA
-- `commerce_spa` for a relational commerce flow with products, carts, orders, and downloads
-- `ucal` for a broader authenticated business application with users, roles, scheduling, and workflow complexity
-
-### What Pharos replaces for a web developer
-
-For many ordinary application features, Pharos is intended to replace or reduce the amount of:
-
-- handwritten API-layer boilerplate
-- repetitive server-controller scaffolding
-- client fetch and state synchronization glue
-- custom CRUD plumbing
-- per-project runtime assembly
-- extra application-layer frameworks required only to connect forms, routes, database operations, and rendered UI
-
-## Future release targets
-
-These targets are tracked in the workspace but are not part of the public v0.8.1 release artifact set:
-
-- Linux x86_64 musl packages
-- Linux ARM64 GNU packages
-- Windows ARM64 MSVC packages
-- `wasm32-wasi` packaged targets
-- additional release-packaged apps beyond `todo_list`, `commerce_spa`, `dynamic_app`, and `static_app`
+The public v0.8.2 release publishes Debian, Linux GNU tarball, macOS x86_64, macOS arm64, and Windows x86_64 MSVC packages. The packages include the main `pharos` runtime plus helper binaries for optional media, QR/barcode, docs, and ops work.
