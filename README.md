@@ -16,8 +16,7 @@ This repository intentionally keeps its source contents minimal so the GitHub-ge
 - [UCAL app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-app-ucal-0.8.2.tar.gz)
 - [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/SHA256SUMS-0.8.2.txt)
 
-## Release Notes: v0.8.2 — 2026-09-27
-
+## Release Notes: v0.8.2 — 2026-09-28
 
 ### New Features
 
@@ -55,6 +54,7 @@ This repository intentionally keeps its source contents minimal so the GitHub-ge
 - Fixed release package assembly so helper binaries do not get treated as app roots and packaging strip steps do not overwrite the selected runtime binary.
 - Fixed docs-builder coupling so `pharos-docs-builder` does not pull SQLite/Turso into its helper graph.
 - Fixed media-helper coupling so media entrypoints live outside the general runtime media module and can run as separate work, not server startup work.
+- Fixed Architect task deletion for generated apps with editor version history, so deleting a task removes the task card and generated preview state cleanly.
 
 ### Deployment notes
 
@@ -70,9 +70,6 @@ This repository intentionally keeps its source contents minimal so the GitHub-ge
 - `pharos-0.8.2-darwin-x86_64.pkg`
 - `pharos-0.8.2-darwin-arm64.pkg`
 - `pharos-0.8.2-windows-x86_64-msvc.zip`
-- `pharos-app-architect-0.8.2.tar.gz`
-- `pharos-app-dev_docs-0.8.2.tar.gz`
-- `pharos-app-ucal-0.8.2.tar.gz`
 - `SHA256SUMS-0.8.2.txt`
 
 ### Packaged apps in the base release
@@ -93,29 +90,3 @@ This repository intentionally keeps its source contents minimal so the GitHub-ge
 - `dev_docs`
 - `menu_spa`
 - `llight`
-
-### Separately published app archives
-
-- `architect`
-- `dev_docs`
-- `ucal`
-
-## Current Pharos feature set
-
-Pharos v0.8.2 is a native web-app framework built around declared app source, a shared Rust runtime, and app-owned templates and contracts.
-
-### App authoring
-
-Pharos apps use normal app directories with `pharos.app.yml`, declarative route/action/policy/data contracts, templates, fragments, static assets, and app-local configuration. The build step compiles those sources into runtime-ready app bundles.
-
-### Architect
-
-Architect adds a browser-based app builder and editor. A user can start from a brief, attach context files, review generated source, open a validated preview, edit managed page elements, and export a clean source archive.
-
-### Runtime and data
-
-The shared runtime owns routing, action execution, query execution, template rendering, fragment updates, sessions, readiness checks, and multi-app hosting. SQL-backed apps use relational state as request-time authority. JSON runtime state stays in the static/file-backed lane and in explicit import/export or backup/restore flows.
-
-### Packages
-
-The public v0.8.2 release publishes Debian, Linux GNU tarball, macOS x86_64, macOS arm64, and Windows x86_64 MSVC packages. The packages include the main `pharos` runtime plus helper binaries for optional media, QR/barcode, docs, and ops work.
