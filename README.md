@@ -55,6 +55,7 @@ This repository intentionally keeps its source contents minimal so the GitHub-ge
 - Fixed docs-builder coupling so `pharos-docs-builder` does not pull SQLite/Turso into its helper graph.
 - Fixed media-helper coupling so media entrypoints live outside the general runtime media module and can run as separate work, not server startup work.
 - Fixed Architect task deletion for generated apps with editor version history, so deleting a task removes the task card and generated preview state cleanly.
+- Fixed Architect queued-task cleanup, context-file upload diagnostics, and export visibility so View and Download export only appear after validation.
 
 ### Deployment notes
 
