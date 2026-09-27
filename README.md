@@ -11,6 +11,9 @@ This repository intentionally keeps its source contents minimal so the GitHub-ge
 - [macOS x86_64 package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-0.8.2-darwin-x86_64.pkg)
 - [macOS arm64 package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-0.8.2-darwin-arm64.pkg)
 - [Windows `.zip`](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-0.8.2-windows-x86_64-msvc.zip)
+- [Architect app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-app-architect-0.8.2.tar.gz)
+- [Developer docs app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-app-dev_docs-0.8.2.tar.gz)
+- [UCAL app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-app-ucal-0.8.2.tar.gz)
 - [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/SHA256SUMS-0.8.2.txt)
 
 ## Release Notes: v0.8.2 — 2026-09-27
@@ -67,6 +70,9 @@ This repository intentionally keeps its source contents minimal so the GitHub-ge
 - `pharos-0.8.2-darwin-x86_64.pkg`
 - `pharos-0.8.2-darwin-arm64.pkg`
 - `pharos-0.8.2-windows-x86_64-msvc.zip`
+- `pharos-app-architect-0.8.2.tar.gz`
+- `pharos-app-dev_docs-0.8.2.tar.gz`
+- `pharos-app-ucal-0.8.2.tar.gz`
 - `SHA256SUMS-0.8.2.txt`
 
 ### Packaged apps in the base release
@@ -87,6 +93,12 @@ This repository intentionally keeps its source contents minimal so the GitHub-ge
 - `dev_docs`
 - `menu_spa`
 - `llight`
+
+### Separately published app archives
+
+- `architect`
+- `dev_docs`
+- `ucal`
 
 ## Current Pharos feature set
 
