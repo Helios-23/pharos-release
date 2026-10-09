@@ -1,93 +1,173 @@
 # Pharos Release Downloads
 
-Public release downloads for Pharos v0.8.2.
+Public release downloads for Pharos v0.8.3.
 
-This repository intentionally keeps its source contents minimal so the GitHub-generated source archives contain only this public release page.
+This repository contains the public release page.
 
 ## Downloads
 
-- [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos_0.8.2_amd64.deb)
-- [Linux x86_64 GNU tarball](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-0.8.2-linux-x86_64-gnu.tar.gz)
-- [macOS x86_64 package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-0.8.2-darwin-x86_64.pkg)
-- [macOS arm64 package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-0.8.2-darwin-arm64.pkg)
-- [Windows `.zip`](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-0.8.2-windows-x86_64-msvc.zip)
-- [Architect app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-app-architect-0.8.2.tar.gz)
-- [Developer docs app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-app-dev_docs-0.8.2.tar.gz)
-- [UCAL app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/pharos-app-ucal-0.8.2.tar.gz)
-- [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.2/SHA256SUMS-0.8.2.txt)
+- [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos_0.8.3_amd64.deb)
+- [Linux x86_64 GNU tarball](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-0.8.3-linux-x86_64-gnu.tar.gz)
+- [macOS x86_64 package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-0.8.3-darwin-x86_64.pkg)
+- [macOS ARM64 package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-0.8.3-darwin-arm64.pkg)
+- [Windows ZIP](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-0.8.3-windows-x86_64-msvc.zip)
+- [architect app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-app-architect-0.8.3.tar.gz)
+- [ucal app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-app-ucal-0.8.3.tar.gz)
+- [menu_spa app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-app-menu_spa-0.8.3.tar.gz)
+- [dev_docs app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-app-dev_docs-0.8.3.tar.gz)
+- [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/SHA256SUMS-0.8.3.txt)
 
-## Release Notes: v0.8.2 — 2026-09-28
+## Release Notes: v0.8.3 — 2026-10-09
 
 ### New Features
 
-- Architect is a model-driven app builder with a connected in-browser editor. It turns a product brief into generated Pharos source, opens the app for review, and keeps source export and validation tied to the generated project.
-  - Create an app from a brief and optional context files.
-  - Review generated source and open a validated running preview after the app has materialized.
-  - Edit managed page elements in the browser with right-click editing, group selection, parent traversal, and compact style controls.
-  - Reopen generated apps and imported source apps for later edits.
-  - Inspect source, exports, data-model panels, and page-layout panels from the editor.
-  - Generate dashboard and KPI app layouts with compact field rows, dynamic dropdown values, and date/time controls that fit the form.
-  - Download full source archives that exclude runtime databases, runtime state, vault files, uploads, temp files, secrets, and `dist`.
-  - Read app metadata from `pharos.app.yml` and preserve projects when the same output app id is built again.
-  - Configure bounded LLM vendor settings for cloud or local providers while keeping source writes, migrations, validation, and exports under the built-in builder.
-- Platform helper binaries move heavy optional work out of the main runtime. Media extraction, barcode/QR decode and encode work, docs generation, and ops orchestration use separate helper paths.
-- QR and barcode support includes generation as well as reading. Apps can use the helper path for tickets, reservations, fast links, and scanned-code flows without loading that work during ordinary server startup.
+#### Architect
+
+- Accepts multiple context files in one build request. The task keeps each accepted file for later review.
+- Accepted context history shows the text and attachments used in successive builds of an app.
+- Follow-up text requests can change an existing generated app. For example, a user can add a dashboard field or move a selected page element, then review the updated preview.
+- The visual editor can add form rows, containers, text, and controls through an organized element menu.
+- Drag-and-drop editing moves an element to a new position. Holding Alt or Option while dragging places it inside another element.
+- Undo and redo restore recent visual edits. Use Command or Control+Z to undo, and add Shift to redo.
+- Element editing reaches nested text and icons. Saved changes remain in the app when the user reopens its preview.
+- Generates backend-independent apps that inherit its configured database backend. Generated apps keep the same logical schema when you choose another supported backend.
+- Data-model edits convert stored field values alongside the schema change. Conversion checks reject incompatible values before changing existing records.
+
+#### Database
+
+- Human-readable YAML database contracts support reusable declarations through anchors and aliases. App builds validate and compile them to JSON; Architect generates and exports YAML source while runtime database loading remains JSON-only.
+- Database-backed apps use one logical database interface with all supported primary backends. Choose the backend through configuration without rewriting app queries or migrations. Primary backends supported are: SQLite, PostgreSQL, MySQL, or MongoDB
+- Portable database declarations cover entities, indexes, uniqueness, foreign keys, checks, and historical data updates. Each backend implements the same declared rules.
+- Logical backups and restores support every primary backend. Restore checks validate the schema and records before committing changes.
 
 ### Included changes
 
-- Release packaging keeps server and app versions separate. A runtime package upgrade does not require separately deployed app bundles to move to the same version.
-- Debian, macOS, Windows, and Linux tarball packages include the split helper binaries alongside the main `pharos` runtime.
-- Linux releases include both a Debian package and a GNU tarball built from the same release binaries.
+- The context entry grows with longer instructions and scrolls when it reaches its height limit. Selected files appear beside the context label before the build starts.
+- UCAL booking and business management, storefront carts and orders, and Architect project storage use the shared database contract.
+- In-memory JSON working views support calculations and rendering. Guarded transactions persist changed records without exporting and importing the whole database for each interaction.
+- Startup readiness checks verify the declared physical schema before serving database-backed apps.
+- Separate runtime components support cached builds of unchanged helpers and database drivers.
 
-### Performance and runtime work
+### Database configuration
 
-- SQL-backed apps no longer use JSON runtime state as request-time authority. Sessions, declared feature actions, generated API mutations, jobs, webhooks, and app records use the relational backend when relational runtime authority is configured.
-- JSON runtime state stays in the file-backed/static lane or in explicit import/export and backup/restore flows. A relational app may still declare a `runtime.state_path` for export compatibility, but normal requests skip JSON-state locks and mutation helpers.
-- SQLite migration startup checks use a cache keyed by the migration ledger and migration contract checksums, avoiding false invalidation from normal SQLite DB/WAL/SHM touch behavior.
-- SQLite migration drift verification batches migration ledger, journal, and required-table reads through one connection. This removed the repeated database open/query loops slowing down apps and app loading. Server startup speed is significantly faster after migration-cache work.
-- `/health` and `/ready` report different states. `/health` can report that the process is alive, while `/ready` waits for the loaded app set so quarantined apps do not count as full app availability.
+- New apps use the configured backend. Moving an existing populated app to another backend requires an explicit data export, import, and verification before accepting writes.
+- Redis retains its existing role as an optional cache. It does not replace the configured primary database.
 
 ### Fixes and refinements
 
-- Fixed UCAL startup behavior by removing the route-demanded runtime-state projection path from relational startup and keeping SQL as the active authority.
-- Fixed migration drift in `commerce_spa`, `dynamic_app`, and `ucal`.
-- Fixed release package assembly so helper binaries do not get treated as app roots and packaging strip steps do not overwrite the selected runtime binary.
-- Fixed docs-builder coupling so `pharos-docs-builder` does not pull SQLite/Turso into its helper graph.
-- Fixed media-helper coupling so media entrypoints live outside the general runtime media module and can run as separate work, not server startup work.
-- Fixed Architect task deletion for generated apps with editor version history, so deleting a task removes the task card and generated preview state cleanly.
-- Fixed Architect queued-task cleanup, context-file upload diagnostics, and export visibility so View and Download export only appear after validation.
+#### Database and deployment
 
-### Deployment notes
+- Commerce upgrades recover a missing store from its recorded owner membership, preserve existing ownership, and reject ambiguous ownership without changing historical migrations.
+- Populated SQLite schema adoption installs missing nullability constraints and both column and table checks while preserving historical checks and existing records; repeat application retains the migration ledger.
+- Menu SPA recognizes its verified historical schema-file checksum during logical contract adoption without replaying catalog seeds.
+- Runtime deployment migrates only Debian-owned apps. External apps use their updated staged bundles for migration, avoiding attempts to migrate older installed contracts with a newer runtime.
+- Runtime and app upgrades retain configured database connections, namespaces, and data locations so separate apps cannot be redirected into one global database during migration.
 
-- External LLM vendors are optional. The built-in builder, local validation, source export checks, and runtime contracts remain authoritative for generated apps.
-- SQL-backed apps should keep sessions and app records in SQL. Redis remains an optional cache layer in this release.
-- Runtime data must live outside app install footprints. Replacing app bundles under `dist/apps` or a deployed app directory must not delete databases, generated source, vaults, uploads, logs, or state directories.
-- Server and app versions are separate. The Debian package can update the runtime and package-owned built-in apps while separately deployed apps keep their own version until they are intentionally redeployed.
+#### Runtime and Commerce
+
+- Browser navigations receive readable error pages for missing routes and other HTTP failures; API and HTMX error responses retain their machine-readable contracts.
+- App mount roots redirect to their trailing-slash URL so relative stylesheets and assets resolve within the app, including Dev Docs.
+- App bundles include Bootstrap Icons stylesheets and fonts when referenced by CSS, even without standalone SVG icon references.
+- New app builds invalidate browser HTTP caches once per build without clearing login sessions or local user storage. Unversioned assets require revalidation.
+- Repeat purchases create fresh cart reservations instead of reusing confirmed reservations from prior orders, preventing provider checkout conflicts.
+
+#### Architect
+
+- Media extraction uses one platform-helper implementation; Architect artifact preparation and helper transport live in the Architect crate without duplicate OCR or speech engines in the root runtime.
+- Editor history renders a bounded list when source-file history reaches the query limit, instead of failing the page.
+
+- Source-edit results update their own panel without replacing the editor workspace; navigation retains its reusable target.
+- Fixed visual edits that failed validation after deployment. A newly added form row now saves and remains available when the user reopens the app.
+- Fixed element placement so new rows appear inside the editable page. Information cards below the page boundary remain separate from the app.
+- Fixed deletion of nested elements, including icons, so the selected item disappears from the saved page.
+- Fixed task context and preview behavior so accepted files and later requests stay associated with the same app.
+- Imported YAML and JSON projects initialize previews on the configured database backend and become viewable after import instead of remaining in Preparing preview.
+- Deleting an edited project removes its version chain without violating restrictive references or deleting another project.
+
+#### UCAL
+
+- Service editors use their declared icon controls and exclude inactive technicians from assignments and service summaries.
+- Service assignment inputs match the save operation; valid short durations and display-order changes persist without being silently overwritten.
+- Service editing places Cancel in the card header, groups bounded numeric controls, and aligns color and image controls. Image selection shows the filename and preview; removal shows None and the selected service color.
+- Service image uploads persist after Save and appear on managed service cards. Deleted services disappear from the management list; compact cards overlay Edit Service on the image’s upper-right corner.
+- Reopening Edit Service preserves the mounted image URL in the client preview. Editor rows use compact, consistent spacing.
+- Managed service cards provide a lower-right Delete Service overlay with confirmation. Edit Service places image controls below the preview, technicians beside the image, and Save at the bottom-right.
+- Service creation, editing, and deletion return to the business management page. The Services URL redirects to that consolidated workspace.
+- Quick Add Service provides a linked color picker and hex field and persists the selected service color.
+- Service cards and editor previews without images display their selected color and initials from every word in the service name.
+- Service order pickers exclude deleted services; creation offers one new position and editing offers only existing active positions.
+- Booking options use aligned, compact input rows with matching Add and Remove icon controls. Service deletion confirmations place the destructive action at the bottom-right.
+
+- Reuse bounded SQLite/Turso database handles instead of reopening the engine for each logical operation, reducing authenticated page latency while preserving independent transactions and file-replacement detection.
+
+- Business creation places Cancel beside the header and uses the shared Create Business icon.
+
+- Managed business cards follow creation order through one shared query implementation, with new businesses appended last across all supported backends.
+
+- Deleting a business returns to Manage Businesses. Business deletion dialogs align controls correctly and suppress unnecessary scrolling.
+
+- Business editing keeps payment controls in independent forms, with valid HTMX targets and multipart uploads. Public/private buttons reflect the current status, and delete dialogs stay within the viewport.
+
+- Business calendars open on today’s date instead of the latest appointment; explicit date and month navigation remains available.
+
+- Restored UCAL business-detail pages for authorized owners.
+
+#### Menu SPA
+
+- Order numbers include the date so the daily sequence can restart without colliding with orders from earlier days.
+- Cart and checkout Back controls work when opened directly and keep their navigation target available.
+
+#### Dynamic App
+
+- Rejected-action reports retry definite concurrent write conflicts instead of silently losing diagnostics to background worker updates.
+- HTMX preview controls load the declared task-list fragment instead of a disabled runtime-state endpoint. Declared-page HTMX requests use their normal renderer when no feature renderer is assigned.
+
+#### Payments
+
+- Replacing provider credentials requires fresh account verification and invalidates pending OAuth callbacks. UCAL and storefront owners can verify new credentials after an unfinished connection without retaining the previous account’s capabilities.
+
+- Connection-test success feedback confirms Stripe authentication and the configured account, rather than implying that saving credentials verifies a connection. Smoke tests distinguish rejected synthetic credentials from controlled provider success.
+
+#### Database
+
+- Business counts, tenant roles, management permissions and appointment access use shared domain policies through generic database operations. Credential and session lookup rules are shared across adapters, including expiry and revoked-session handling. Guards prevent these read policies from being reimplemented separately by each backend.
+
+#### Server runtime
+
+- Default developer checks and the full local app smoke enforce HTMX contract guards for declared routes/actions, target bindings, form structure, and rendered response fragments.
+
+- Static app routes with trailing slashes resolve their declared page artifacts correctly, including mounted directory pages.
+
+- Fixed intermittent bad-request pages during navigation. Unused browser connections close without receiving an error page.
+
+#### Database
+
+- Fixed backend-dependent ownership, session, and rate-limit handling so supported backends enforce the same security rules.
+
+#### Developer documentation
+
+- Documentation pages use mounted asset URLs, preserving CSS, icons, and scripts on directory URLs with or without trailing slashes.
+
+- Documentation builds select the shipping runtime feature set instead of enabling every optional engine and host bridge. Cargo/Rustdoc orchestration belongs to the documentation crate and uses locked local dependencies.
+
+### Platform validation
+
+- Linux x86_64 GNU passed installed-package validation and the full nine-app QA smoke matrix. macOS x86_64 uses native host smoke checks.
+- This release has an explicit operator-approved exception for native macOS ARM64 and Windows x86_64 execution because suitable systems are unavailable. macOS ARM64 receives cross-build and package integrity checks; Windows receives cross-build, package integrity and Wine smoke checks. These checks do not constitute native platform validation. The exception applies only to v0.8.3.
 
 ### Published artifacts
 
-- `pharos_0.8.2_amd64.deb`
-- `pharos-0.8.2-linux-x86_64-gnu.tar.gz`
-- `pharos-0.8.2-darwin-x86_64.pkg`
-- `pharos-0.8.2-darwin-arm64.pkg`
-- `pharos-0.8.2-windows-x86_64-msvc.zip`
-- `SHA256SUMS-0.8.2.txt`
+- pharos_0.8.3_amd64.deb
+- pharos-0.8.3-linux-x86_64-gnu.tar.gz
+- pharos-0.8.3-darwin-x86_64.pkg
+- pharos-0.8.3-darwin-arm64.pkg
+- pharos-0.8.3-windows-x86_64-msvc.zip
+- SHA256SUMS-0.8.3.txt
 
 ### Packaged apps in the base release
 
-- `todo_list`
-- `commerce_spa`
-- `dynamic_app`
-- `static_app`
+- todo_list, commerce_spa, dynamic_app and static_app.
 
 ### Apps validated with this release
 
-- `architect`
-- `todo_list`
-- `static_app`
-- `dynamic_app`
-- `commerce_spa`
-- `ucal`
-- `dev_docs`
-- `menu_spa`
-- `llight`
+- Architect, UCAL, Commerce SPA, Menu SPA, Dynamic App, Todo List, Static App, Developer Docs and LLight passed QA smoke checks. Architect, UCAL, Menu SPA and Developer Docs app archives are published separately.
