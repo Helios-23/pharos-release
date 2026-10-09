@@ -152,7 +152,7 @@ This repository contains the public release page.
 
 ### Platform validation
 
-- This release has an operator-approved exception to the 40 MB executable size ceiling. The macOS Intel runtime is 50,034,636 bytes; integrity and runtime checks remain required.
+- This release has an operator-approved exception to the 40 MB executable size ceiling. Runtime sizes are 50,034,636 bytes for macOS Intel, 44,941,888 bytes for macOS ARM64, and 48,165,376 bytes for Windows x86_64. Integrity and available runtime checks remain required.
 
 - Linux x86_64 GNU passed installed-package validation and the full nine-app QA smoke matrix. macOS x86_64 uses native host smoke checks.
 - This release has an explicit operator-approved exception for native macOS ARM64 and Windows x86_64 execution because suitable systems are unavailable. macOS ARM64 receives cross-build and package integrity checks; Windows receives cross-build, package integrity and Wine smoke checks. These checks do not constitute native platform validation. The exception applies only to v0.8.3.
