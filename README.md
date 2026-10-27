@@ -36,6 +36,12 @@ Public release downloads for Pharos v0.8.4.
 - The property editor supports text and mouse-over text, icon selection/removal and pixel sizing, background colors, synchronized color/hex inputs, border opacity and shadows. Colors, images and borders share one panel, with consistent Apply controls.
 - Preview authentication, navigation, assets and popups remain within the isolated app preview. Preview accounts support admin and user testing; these accounts are not production account provisioning.
 
+#### Shared framework CRM
+
+- Declarative schemas, queries, actions and UI support contacts, organizations, leads, notes, activity, follow-ups and linked records independently of Architect or the label app.
+- Shared runtime capabilities provide validated CRUD, database-backed search/filtering/ordering, policy and owner/tenant boundaries, transactional history writes, revision-guarded edits and declared archive/delete behavior. Apps supply their own schemas, migrations, permissions and presentation; CRM tables and screens are not installed automatically.
+- Generated admin/API surfaces and app-owned HTMX fragments use the same framework services. See [Declarative CRM](https://github.com/Helios-23/pharos/blob/main/docs/contracts/crm.md) for the authoring guide and links to transaction, validation and UI contracts.
+
 #### Shared framework social connections
 
 - Reusable social connection services keep provider credentials, encrypted storage and collection jobs separate from app-specific content processing. Apps opt into the capability through authenticated runtime adapters and configuration.
@@ -80,7 +86,7 @@ Native macOS ARM64 and native Windows hosts were unavailable for this release. m
 
 Native binaries and distribution packages have no byte-based size budget. Runtime input and resource limits remain enforced.
 
-The standalone label app and its catalog, CRM and gig-discovery interfaces are not included in this release.
+The standalone label app and its domain-specific catalog, CRM and gig-discovery interfaces are not included in this release. Shared declarative CRM framework capabilities are included and available to other apps.
 
 ### Validation results
 
