@@ -14,9 +14,7 @@ Public release downloads for Pharos v0.8.4.
 - [UCAL app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.4/pharos-app-ucal-0.8.4.tar.gz)
 - [SHA-256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.4/SHA256SUMS-0.8.4.txt)
 
-
 ## Release Notes: v0.8.4
-
 
 ### New features
 
@@ -36,17 +34,17 @@ Public release downloads for Pharos v0.8.4.
 - The property editor supports text and mouse-over text, icon selection/removal and pixel sizing, background colors, synchronized color/hex inputs, border opacity and shadows. Colors, images and borders share one panel, with consistent Apply controls.
 - Preview authentication, navigation, assets and popups remain within the isolated app preview. Preview accounts support admin and user testing; these accounts are not production account provisioning.
 
-#### Shared framework CRM
+#### Declarative CRM
 
-- Declarative schemas, queries, actions and UI support contacts, organizations, leads, notes, activity, follow-ups and linked records independently of Architect or the label app.
-- Shared runtime capabilities provide validated CRUD, database-backed search/filtering/ordering, policy and owner/tenant boundaries, transactional history writes, revision-guarded edits and declared archive/delete behavior. Apps supply their own schemas, migrations, permissions and presentation; CRM tables and screens are not installed automatically.
-- Generated admin/API surfaces and app-owned HTMX fragments use the same framework services. See [Declarative CRM](https://github.com/Helios-23/pharos/blob/main/docs/contracts/crm.md) for the authoring guide and links to transaction, validation and UI contracts.
+- Declarative schemas, queries, actions and UI support contacts, organizations, leads, notes, activity, follow-ups and linked records.
+- CRM capabilities include validated CRUD, database-backed search/filtering/ordering, policy and owner/tenant boundaries, transactional history writes, revision-guarded edits and declared archive/delete behavior. Schemas, migrations, permissions and templates define record types and presentation.
+- Generated admin/API surfaces and app-owned HTMX fragments use the same framework services. See [Declarative CRM](https://pharos.llight.io/dev_docs/contracts/crm.html) for the authoring guide and links to transaction, validation and UI contracts.
 
-#### Shared framework social connections
+#### Social connections
 
-- Reusable social connection services keep provider credentials, encrypted storage and collection jobs separate from app-specific content processing. Apps opt into the capability through authenticated runtime adapters and configuration.
-- Persistent browser sign-in connections retain their scoped profile across restarts. Reconnect reuses the saved profile; disconnect clears the saved sign-in. These connections authorize external content access and do not create Pharos login accounts or enable paid OAuth/OIDC app-login features.
-- Collection retains source evidence and distinguishes partial or unavailable access from an empty successful result. Publication rules and domain-specific workflows belong to the consuming app.
+- Social connections provide scoped provider credentials, encrypted storage and background collection jobs through authenticated adapters and configuration.
+- Persistent browser sign-in connections retain their scoped profile across restarts. Reconnect reuses the saved profile; disconnect clears the saved sign-in.
+- Collection retains source evidence and distinguishes partial or unavailable access from an empty successful result. Publication uses declared permissions and validation rules.
 
 ### Fixes and refinements
 
@@ -67,8 +65,8 @@ Public release downloads for Pharos v0.8.4.
 
 - ChatGPT access depends on the connected account's model availability and provider limits. A successful sign-in does not guarantee access to every model.
 - Social platforms may expire sessions, require verification or restrict collection. Browser sign-in is separate from provider API authorization; API connectors require the relevant registration and permissions. A partial rendered feed is not a complete scrape, and a connection alone does not guarantee access to every resource.
-- Existing populated apps retain their configured database, external media, credentials and migration history. Review the [release procedure](operations/release-automation.md) before upgrading; preserve external app configuration and backups.
-- YAML database authoring and generic database backend support were introduced in 0.8.3 and remain supported.
+- Existing populated apps retain their configured database, external media, credentials and migration history. Back up external configuration and data before upgrading.
+- YAML database contracts compile to JSON artifacts; imported JSON contracts remain supported.
 
 ### Published artifacts
 
@@ -78,25 +76,6 @@ Runtime downloads include the Linux x86_64 GNU Debian package and tarball, macOS
 
 The Debian package includes Todo List, Commerce SPA, Dynamic App and Static App, together with runtime helpers and source examples. Architect, Dev Docs and UCAL are separately distributed apps; they are not installed by the base Debian package.
 
-### Platform validation
+### Platform compatibility
 
-All release artifacts were built locally from the tagged source using cached cross-build toolchains. No GitHub Actions artifacts or hosted builds were used. Package checks and available local runtime checks are recorded with artifact hashes.
-
-Native macOS ARM64 and native Windows hosts were unavailable for this release. macOS ARM64 receives cross-build and installer integrity checks; Windows receives cross-build, ZIP integrity and supplemental Wine execution checks. Wine is not native Windows certification. Publication with these native-host limitations was authorized for 0.8.4.
-
-Native binaries and distribution packages have no byte-based size budget. Runtime input and resource limits remain enforced.
-
-The standalone label app and its domain-specific catalog, CRM and gig-discovery interfaces are not included in this release. Shared declarative CRM framework capabilities are included and available to other apps.
-
-### Validation results
-
-- Linux: exact Debian package and tarball payload checks, nine-app health/readiness, and all 52 Architect smoke checks locally and on QA.
-- macOS Intel: installer payload checks, four packaged example builds and native shared-runtime checks.
-- macOS ARM64: installer payload, executable architecture and helper hash checks; native execution unavailable.
-- Windows: ZIP integrity, four packaged example builds, legacy database migration and shared-runtime HTTP checks under Wine; native Windows execution unavailable.
-
-Source: [v0.8.4](https://github.com/Helios-23/pharos/tree/v0.8.4), commit 02c277dbef778d485e8afcdcdfe02815a95fa859.
-
-### CRM documentation update
-
-The shared CRM guide and Dev Docs archive include the framework authoring documentation from [d5f997a4](https://github.com/Helios-23/pharos/commit/d5f997a4). [Read Declarative CRM online](https://pharos.llight.io/dev_docs/contracts/crm.html), including schemas, actions, validation, scoped access, history and UI composition. The runtime packages and their source tag are unchanged.
+Native macOS ARM64 and Windows execution was not verified for this release. macOS ARM64 received cross-build and package integrity checks; Windows also received execution checks under Wine.
