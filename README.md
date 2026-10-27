@@ -1,175 +1,92 @@
 # Pharos Release Downloads
 
-Public release downloads for Pharos v0.8.3.
-
-This repository contains the public release page.
+Public release downloads for Pharos v0.8.4.
 
 ## Downloads
 
-- [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos_0.8.3_amd64.deb)
-- [Linux x86_64 GNU tarball](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-0.8.3-linux-x86_64-gnu.tar.gz)
-- [macOS x86_64 package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-0.8.3-darwin-x86_64.pkg)
-- [macOS ARM64 package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-0.8.3-darwin-arm64.pkg)
-- [Windows ZIP](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-0.8.3-windows-x86_64-msvc.zip)
-- [architect app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-app-architect-0.8.3.tar.gz)
-- [ucal app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-app-ucal-0.8.3.tar.gz)
-- [menu_spa app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-app-menu_spa-0.8.3.tar.gz)
-- [dev_docs app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/pharos-app-dev_docs-0.8.3.tar.gz)
-- [SHA256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.3/SHA256SUMS-0.8.3.txt)
+- [Debian package](https://github.com/Helios-23/pharos-release/releases/download/v0.8.4/pharos_0.8.4_amd64.deb)
+- [Linux x86_64 GNU tarball](https://github.com/Helios-23/pharos-release/releases/download/v0.8.4/pharos-0.8.4-linux-x86_64-gnu.tar.gz)
+- [macOS Intel installer](https://github.com/Helios-23/pharos-release/releases/download/v0.8.4/pharos-0.8.4-darwin-x86_64.pkg)
+- [macOS ARM64 installer](https://github.com/Helios-23/pharos-release/releases/download/v0.8.4/pharos-0.8.4-darwin-arm64.pkg)
+- [Windows x86_64 ZIP](https://github.com/Helios-23/pharos-release/releases/download/v0.8.4/pharos-0.8.4-windows-x86_64-msvc.zip)
+- [Architect app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.4/pharos-app-architect-0.8.4.tar.gz)
+- [Dev Docs app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.4/pharos-app-dev_docs-0.8.4.tar.gz)
+- [UCAL app archive](https://github.com/Helios-23/pharos-release/releases/download/v0.8.4/pharos-app-ucal-0.8.4.tar.gz)
+- [SHA-256 checksums](https://github.com/Helios-23/pharos-release/releases/download/v0.8.4/SHA256SUMS-0.8.4.txt)
 
-## Release Notes: v0.8.3 — 2026-10-09
 
-### New Features
+## Release Notes: v0.8.4
 
-#### Architect
 
-- Accepts multiple context files in one build request. The task keeps each accepted file for later review.
-- Accepted context history shows the text and attachments used in successive builds of an app.
-- Follow-up text requests can change an existing generated app. For example, a user can add a dashboard field or move a selected page element, then review the updated preview.
-- The visual editor can add form rows, containers, text, and controls through an organized element menu.
-- Drag-and-drop editing moves an element to a new position. Holding Alt or Option while dragging places it inside another element.
-- Undo and redo restore recent visual edits. Use Command or Control+Z to undo, and add Shift to redo.
-- Element editing reaches nested text and icons. Saved changes remain in the app when the user reopens its preview.
-- Generates backend-independent apps that inherit its configured database backend. Generated apps keep the same logical schema when you choose another supported backend.
-- Data-model edits convert stored field values alongside the schema change. Conversion checks reject incompatible values before changing existing records.
+### New features
 
-#### Database
+#### Architect generation and intake
 
-- Human-readable YAML database contracts support reusable declarations through anchors and aliases. App builds validate and compile them to JSON; Architect generates and exports YAML source while runtime database loading remains JSON-only.
-- Database-backed apps use one logical database interface with all supported primary backends. Choose the backend through configuration without rewriting app queries or migrations. Primary backends supported are: SQLite, PostgreSQL, MySQL, or MongoDB
-- Portable database declarations cover entities, indexes, uniqueness, foreign keys, checks, and historical data updates. Each backend implements the same declared rules.
-- Logical backups and restores support every primary backend. Restore checks validate the schema and records before committing changes.
+- Context-driven multi-page generation combines written instructions and accepted attachments. Follow-up builds continue the existing named app and preserve accepted source when planning, model validation or compilation fails.
+- Optional ChatGPT account connections complement API-key LLM vendors. Connection management, model selection and generation use the shared OAuth foundation without enabling external account login for Pharos apps.
+- Mixed-folder intake accepts context documents, CSV data and images together. Automatic CSV import creates data tables, normalizes matching labels and treats repeat imports idempotently. Data-bound views can associate imported records with their images.
+- Image intake supports up to 1,000 images, with a 2 MiB per-image limit and batches of ten. Uploaded assets remain associated with the task and are included through app-relative source assets.
+- Editable app IDs can be renamed from Recent builder tasks. Renaming keeps the project, context and preview records, updates source exports and subsequent builds, and safely rebases restored snapshots to the current identity. App-bound sessions and social connections require sign-in again after renaming.
+- One shared source-import form accepts an app folder or ZIP, TAR, TAR.GZ or TGZ archive. Early size/file checks reject oversized sources before upload; imported YAML and JSON database contracts retain their authored format.
 
-### Included changes
+#### Visual editing
 
-- The context entry grows with longer instructions and scrolls when it reaches its height limit. Selected files appear beside the context label before the build starts.
-- UCAL booking and business management, storefront carts and orders, and Architect project storage use the shared database contract.
-- In-memory JSON working views support calculations and rendering. Guarded transactions persist changed records without exporting and importing the whole database for each interaction.
-- Startup readiness checks verify the declared physical schema before serving database-backed apps.
-- Separate runtime components support cached builds of unchanged helpers and database drivers.
+- Shared editable grouping gives page rows, element containers and native controls consistent selection targets across generated, imported and shipped interfaces.
+- Element and group movement supports placement within containers and beside other elements while retaining the current preview view. Pointer Events and pointer capture replace mouse-only drag tracking.
+- The property editor supports text and mouse-over text, icon selection/removal and pixel sizing, background colors, synchronized color/hex inputs, border opacity and shadows. Colors, images and borders share one panel, with consistent Apply controls.
+- Preview authentication, navigation, assets and popups remain within the isolated app preview. Preview accounts support admin and user testing; these accounts are not production account provisioning.
 
-### Database configuration
+#### Shared framework social connections
 
-- New apps use the configured backend. Moving an existing populated app to another backend requires an explicit data export, import, and verification before accepting writes.
-- Redis retains its existing role as an optional cache. It does not replace the configured primary database.
+- Reusable social connection services keep provider credentials, encrypted storage and collection jobs separate from app-specific content processing. Apps opt into the capability through authenticated runtime adapters and configuration.
+- Persistent browser sign-in connections retain their scoped profile across restarts. Reconnect reuses the saved profile; disconnect clears the saved sign-in. These connections authorize external content access and do not create Pharos login accounts or enable paid OAuth/OIDC app-login features.
+- Collection retains source evidence and distinguishes partial or unavailable access from an empty successful result. Publication rules and domain-specific workflows belong to the consuming app.
 
 ### Fixes and refinements
 
-#### Database and deployment
+- Removed binary-size budgets from native build and release verification. Distribution size no longer blocks a server release.
+- Windows SQLite connections use their supported file-locking mode instead of requesting shared-WAL coordination that is unavailable in the Windows I/O backend.
+- App builds on Windows write portable ownership paths so generated artifacts pass the same boundary checks as Unix builds.
+- Architect upgrades remove the obsolete task-event restriction without changing existing records or earlier migration checksums. Constraint failures are reported separately from actual database contention.
+- Architect task lists respect the logged-in user. Builder accounts can access their LLM settings; account administration remains role-gated.
+- Build failures remain visible, and accepted-context history and expandable audit entries make generation outcomes easier to inspect. Readable errors show the error code, message and available correlation ID instead of raw error envelopes.
+- Follow-up request classification ignores embedded existing-source reference metadata, so ordinary app edits do not acquire unrelated commerce prerequisites.
+- Source import, project deletion, stale-plan handling and preview project registration no longer leave valid editable projects stranded behind unavailable actions.
+- Saved typography, layout, icon and style changes persist across refreshed fragments and reopened editors. Exported CSS excludes internal preview-edit comments.
+- Preview toolbars stay above the app without covering its controls. Shared rendering paths keep menus, import controls and editor panels consistent.
+- Media and extraction models use separate configurable roots; model binaries no longer belong inside the Architect app source bundle.
+- UCAL service initials ignore parentheses, and managed service cards place the service name above price and duration.
 
-- Commerce upgrades recover a missing store from its recorded owner membership, preserve existing ownership, and reject ambiguous ownership without changing historical migrations.
-- Populated SQLite schema adoption installs missing nullability constraints and both column and table checks while preserving historical checks and existing records; repeat application retains the migration ledger.
-- Menu SPA recognizes its verified historical schema-file checksum during logical contract adoption without replaying catalog seeds.
-- Runtime deployment migrates only Debian-owned apps. External apps use their updated staged bundles for migration, avoiding attempts to migrate older installed contracts with a newer runtime.
-- Runtime and app upgrades retain configured database connections, namespaces, and data locations so separate apps cannot be redirected into one global database during migration.
+### Connection and upgrade requirements
 
-#### Runtime and Commerce
-
-- Browser navigations receive readable error pages for missing routes and other HTTP failures; API and HTMX error responses retain their machine-readable contracts.
-- App mount roots redirect to their trailing-slash URL so relative stylesheets and assets resolve within the app, including Dev Docs.
-- App bundles include Bootstrap Icons stylesheets and fonts when referenced by CSS, even without standalone SVG icon references.
-- New app builds invalidate browser HTTP caches once per build without clearing login sessions or local user storage. Unversioned assets require revalidation.
-- Repeat purchases create fresh cart reservations instead of reusing confirmed reservations from prior orders, preventing provider checkout conflicts.
-
-#### Architect
-
-- Media extraction uses one platform-helper implementation; Architect artifact preparation and helper transport live in the Architect crate without duplicate OCR or speech engines in the root runtime.
-- Editor history renders a bounded list when source-file history reaches the query limit, instead of failing the page.
-
-- Source-edit results update their own panel without replacing the editor workspace; navigation retains its reusable target.
-- Fixed visual edits that failed validation after deployment. A newly added form row now saves and remains available when the user reopens the app.
-- Fixed element placement so new rows appear inside the editable page. Information cards below the page boundary remain separate from the app.
-- Fixed deletion of nested elements, including icons, so the selected item disappears from the saved page.
-- Fixed task context and preview behavior so accepted files and later requests stay associated with the same app.
-- Imported YAML and JSON projects initialize previews on the configured database backend and become viewable after import instead of remaining in Preparing preview.
-- Deleting an edited project removes its version chain without violating restrictive references or deleting another project.
-
-#### UCAL
-
-- Service editors use their declared icon controls and exclude inactive technicians from assignments and service summaries.
-- Service assignment inputs match the save operation; valid short durations and display-order changes persist without being silently overwritten.
-- Service editing places Cancel in the card header, groups bounded numeric controls, and aligns color and image controls. Image selection shows the filename and preview; removal shows None and the selected service color.
-- Service image uploads persist after Save and appear on managed service cards. Deleted services disappear from the management list; compact cards overlay Edit Service on the image’s upper-right corner.
-- Reopening Edit Service preserves the mounted image URL in the client preview. Editor rows use compact, consistent spacing.
-- Managed service cards provide a lower-right Delete Service overlay with confirmation. Edit Service places image controls below the preview, technicians beside the image, and Save at the bottom-right.
-- Service creation, editing, and deletion return to the business management page. The Services URL redirects to that consolidated workspace.
-- Quick Add Service provides a linked color picker and hex field and persists the selected service color.
-- Service cards and editor previews without images display their selected color and initials from every word in the service name.
-- Service order pickers exclude deleted services; creation offers one new position and editing offers only existing active positions.
-- Booking options use aligned, compact input rows with matching Add and Remove icon controls. Service deletion confirmations place the destructive action at the bottom-right.
-
-- Reuse bounded SQLite/Turso database handles instead of reopening the engine for each logical operation, reducing authenticated page latency while preserving independent transactions and file-replacement detection.
-
-- Business creation places Cancel beside the header and uses the shared Create Business icon.
-
-- Managed business cards follow creation order through one shared query implementation, with new businesses appended last across all supported backends.
-
-- Deleting a business returns to Manage Businesses. Business deletion dialogs align controls correctly and suppress unnecessary scrolling.
-
-- Business editing keeps payment controls in independent forms, with valid HTMX targets and multipart uploads. Public/private buttons reflect the current status, and delete dialogs stay within the viewport.
-
-- Business calendars open on today’s date instead of the latest appointment; explicit date and month navigation remains available.
-
-- Restored UCAL business-detail pages for authorized owners.
-
-#### Menu SPA
-
-- Order numbers include the date so the daily sequence can restart without colliding with orders from earlier days.
-- Cart and checkout Back controls work when opened directly and keep their navigation target available.
-
-#### Dynamic App
-
-- Rejected-action reports retry definite concurrent write conflicts instead of silently losing diagnostics to background worker updates.
-- HTMX preview controls load the declared task-list fragment instead of a disabled runtime-state endpoint. Declared-page HTMX requests use their normal renderer when no feature renderer is assigned.
-
-#### Payments
-
-- Replacing provider credentials requires fresh account verification and invalidates pending OAuth callbacks. UCAL and storefront owners can verify new credentials after an unfinished connection without retaining the previous account’s capabilities.
-
-- Connection-test success feedback confirms Stripe authentication and the configured account, rather than implying that saving credentials verifies a connection. Smoke tests distinguish rejected synthetic credentials from controlled provider success.
-
-#### Database
-
-- Business counts, tenant roles, management permissions and appointment access use shared domain policies through generic database operations. Credential and session lookup rules are shared across adapters, including expiry and revoked-session handling. Guards prevent these read policies from being reimplemented separately by each backend.
-
-#### Server runtime
-
-- Default developer checks and the full local app smoke enforce HTMX contract guards for declared routes/actions, target bindings, form structure, and rendered response fragments.
-
-- Static app routes with trailing slashes resolve their declared page artifacts correctly, including mounted directory pages.
-
-- Fixed intermittent bad-request pages during navigation. Unused browser connections close without receiving an error page.
-
-#### Database
-
-- Fixed backend-dependent ownership, session, and rate-limit handling so supported backends enforce the same security rules.
-
-#### Developer documentation
-
-- Documentation pages use mounted asset URLs, preserving CSS, icons, and scripts on directory URLs with or without trailing slashes.
-
-- Documentation builds select the shipping runtime feature set instead of enabling every optional engine and host bridge. Cargo/Rustdoc orchestration belongs to the documentation crate and uses locked local dependencies.
-
-### Platform validation
-
-- This release has an operator-approved exception to the 40 MB executable size ceiling. Runtime sizes are 50,034,636 bytes for macOS Intel, 44,941,888 bytes for macOS ARM64, and 48,165,376 bytes for Windows x86_64. Integrity and available runtime checks remain required.
-
-- Linux x86_64 GNU passed installed-package validation and the full nine-app QA smoke matrix. macOS x86_64 uses native host smoke checks.
-- This release has an explicit operator-approved exception for native macOS ARM64 and Windows x86_64 execution because suitable systems are unavailable. macOS ARM64 receives cross-build and package integrity checks; Windows receives cross-build, package integrity and Wine smoke checks. These checks do not constitute native platform validation. The exception applies only to v0.8.3.
+- ChatGPT access depends on the connected account's model availability and provider limits. A successful sign-in does not guarantee access to every model.
+- Social platforms may expire sessions, require verification or restrict collection. Browser sign-in is separate from provider API authorization; API connectors require the relevant registration and permissions. A partial rendered feed is not a complete scrape, and a connection alone does not guarantee access to every resource.
+- Existing populated apps retain their configured database, external media, credentials and migration history. Review the [release procedure](operations/release-automation.md) before upgrading; preserve external app configuration and backups.
+- YAML database authoring and generic database backend support were introduced in 0.8.3 and remain supported.
 
 ### Published artifacts
 
-- pharos_0.8.3_amd64.deb
-- pharos-0.8.3-linux-x86_64-gnu.tar.gz
-- pharos-0.8.3-darwin-x86_64.pkg
-- pharos-0.8.3-darwin-arm64.pkg
-- pharos-0.8.3-windows-x86_64-msvc.zip
-- SHA256SUMS-0.8.3.txt
+Runtime downloads include the Linux x86_64 GNU Debian package and tarball, macOS Intel and ARM64 installers, and the Windows x86_64 ZIP. Architect, Dev Docs and UCAL have separate app archives. `SHA256SUMS-0.8.4.txt` covers the complete public asset set. Platform validation and publication evidence accompany the release.
 
 ### Packaged apps in the base release
 
-- todo_list, commerce_spa, dynamic_app and static_app.
+The Debian package includes Todo List, Commerce SPA, Dynamic App and Static App, together with runtime helpers and source examples. Architect, Dev Docs and UCAL are separately distributed apps; they are not installed by the base Debian package.
 
-### Apps validated with this release
+### Platform validation
 
-- Architect, UCAL, Commerce SPA, Menu SPA, Dynamic App, Todo List, Static App, Developer Docs and LLight passed QA smoke checks. Architect, UCAL, Menu SPA and Developer Docs app archives are published separately.
+All release artifacts were built locally from the tagged source using cached cross-build toolchains. No GitHub Actions artifacts or hosted builds were used. Package checks and available local runtime checks are recorded with artifact hashes.
+
+Native macOS ARM64 and native Windows hosts were unavailable for this release. macOS ARM64 receives cross-build and installer integrity checks; Windows receives cross-build, ZIP integrity and supplemental Wine execution checks. Wine is not native Windows certification. Publication with these native-host limitations was authorized for 0.8.4.
+
+Native binaries and distribution packages have no byte-based size budget. Runtime input and resource limits remain enforced.
+
+The standalone label app and its catalog, CRM and gig-discovery interfaces are not included in this release.
+
+### Validation results
+
+- Linux: exact Debian package and tarball payload checks, nine-app health/readiness, and all 52 Architect smoke checks locally and on QA.
+- macOS Intel: installer payload checks, four packaged example builds and native shared-runtime checks.
+- macOS ARM64: installer payload, executable architecture and helper hash checks; native execution unavailable.
+- Windows: ZIP integrity, four packaged example builds, legacy database migration and shared-runtime HTTP checks under Wine; native Windows execution unavailable.
+
+Source: [v0.8.4](https://github.com/Helios-23/pharos/tree/v0.8.4), commit 02c277dbef778d485e8afcdcdfe02815a95fa859.
