@@ -96,3 +96,7 @@ The standalone label app and its domain-specific catalog, CRM and gig-discovery 
 - Windows: ZIP integrity, four packaged example builds, legacy database migration and shared-runtime HTTP checks under Wine; native Windows execution unavailable.
 
 Source: [v0.8.4](https://github.com/Helios-23/pharos/tree/v0.8.4), commit 02c277dbef778d485e8afcdcdfe02815a95fa859.
+
+### CRM documentation update
+
+The shared CRM guide and Dev Docs archive include the framework authoring documentation from [d5f997a4](https://github.com/Helios-23/pharos/commit/d5f997a4). [Read Declarative CRM online](https://pharos.llight.io/dev_docs/contracts/crm.html), including schemas, actions, validation, scoped access, history and UI composition. The runtime packages and their source tag are unchanged.
